@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aaron Shao</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f8f9fa;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #1e3a8a;
+            padding: 2rem 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 0 1rem;
+        }
+
+        .nav-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-menu a {
+            color: #cbd5e1;
+            text-decoration: none;
+            display: block;
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .nav-menu a:hover {
+            background-color: #1e40af;
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .nav-menu a.active {
+            background-color: #2563eb;
+            color: white;
+        }
+
+        /* Main content */
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 3rem 4rem;
+            max-width: 1200px;
+        }
+
+        /* About section */
+        .about-section {
+            margin-bottom: 4rem;
+        }
+
+        .about-section h2 {
+            color: #1e3a8a;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .about-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #1e3a8a;
+        }
+
+        .about-content p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .experience-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .experience-item:last-child {
+            border-bottom: none;
+        }
+
+        .experience-title {
+            color: #1e3a8a;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Articles section */
+        .articles-section {
+            margin-bottom: 4rem;
+        }
+
+        .articles-section h2 {
+            color: #1e3a8a;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid #1e3a8a;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .article-card.featured {
+            grid-column: span 2;
+            border-top: 4px solid #dc2626;
+        }
+
+        .article-header {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: white;
+        }
+
+        .article-card.featured .article-header {
+            background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+        }
+
+        .article-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .article-date {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .article-content {
+            padding: 1.5rem;
+        }
+
+        .article-excerpt {
+            color: #4b5563;
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .read-more {
+            color: #1e3a8a;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: #2563eb;
+        }
+
+        .article-tags {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: #e0e7ff;
+            color: #1e3a8a;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .featured-badge {
+            background: #dc2626;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 2rem 1rem;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .article-card.featured {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <h1>Aaron Shao</h1>
+            <ul class="nav-menu">
+                <li><a href="#about" class="active">About</a></li>
+                <li><a href="#articles">Articles</a></li>
+                <li><a href="#manifesto">Manifesto</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main content -->
+        <main class="main-content">
+            <!-- About section -->
+            <section id="about" class="about-section">
+                <h2>About</h2>
+                <div class="about-content">
+                    <p>Welcome to my personal space on the web. I'm Aaron Shao, a thinker, writer, and advocate for meaningful change in our rapidly evolving world.</p>
+                    
+                    <p>My work focuses on the intersection of technology, society, and human potential. I believe in the power of ideas to shape our future and the importance of thoughtful discourse in navigating complex challenges.</p>
+
+                    <div class="experience-item">
+                        <div class="experience-title">Philosophy & Critical Thinking</div>
+                        <p>Exploring fundamental questions about existence, ethics, and the human condition through rigorous analysis and creative expression.</p>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-title">Technology & Society</div>
+                        <p>Examining how technological advancement intersects with social structures, economic systems, and individual liberty.</p>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-title">Writing & Communication</div>
+                        <p>Crafting compelling narratives and arguments that bridge complex ideas with accessible understanding.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Articles section -->
+            <section id="articles" class="articles-section">
+                <h2>Articles & Thoughts</h2>
+                <div class="articles-grid">
+                    <!-- Featured article - Manifesto -->
+                    <article class="article-card featured">
+                        <div class="article-header">
+                            <h3 class="article-title">My Manifesto: A Vision for Tomorrow</h3>
+                            <div class="article-date">December 2024</div>
+                        </div>
+                        <div class="article-content">
+                            <p class="article-excerpt">A comprehensive exploration of my core beliefs, values, and vision for how we can collectively build a better future. This manifesto outlines the principles that guide my thinking and the actionable steps we can take to create meaningful change in our communities and beyond.</p>
+                            <div class="article-meta">
+                                <a href="#" class="read-more">Read Full Manifesto →</a>
+                                <div class="article-tags">
+                                    <span class="featured-badge">Featured</span>
+                                    <span class="tag">Philosophy</span>
+                                    <span class="tag">Society</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Regular articles -->
+                    <article class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">The Future of Human Connection</h3>
+                            <div class="article-date">November 2024</div>
+                        </div>
+                        <div class="article-content">
+                            <p class="article-excerpt">In an increasingly digital world, how do we maintain authentic human connections? Exploring the balance between technological convenience and meaningful relationships.</p>
+                            <div class="article-meta">
+                                <a href="#" class="read-more">Read More →</a>
+                                <div class="article-tags">
+                                    <span class="tag">Technology</span>
+                                    <span class="tag">Society</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">On Creative Destruction</h3>
+                            <div class="article-date">October 2024</div>
+                        </div>
+                        <div class="article-content">
+                            <p class="article-excerpt">Sometimes we must tear down old structures to build something better. Reflections on change, progress, and the courage to reimagine our systems.</p>
+                            <div class="article-meta">
+                                <a href="#" class="read-more">Read More →</a>
+                                <div class="article-tags">
+                                    <span class="tag">Philosophy</span>
+                                    <span class="tag">Change</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Digital Minimalism in Practice</h3>
+                            <div class="article-date">September 2024</div>
+                        </div>
+                        <div class="article-content">
+                            <p class="article-excerpt">Practical strategies for reducing digital clutter and focusing on what truly matters in our hyperconnected age.</p>
+                            <div class="article-meta">
+                                <a href="#" class="read-more">Read More →</a>
+                                <div class="article-tags">
+                                    <span class="tag">Lifestyle</span>
+                                    <span class="tag">Technology</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">The Art of Deep Work</h3>
+                            <div class="article-date">August 2024</div>
+                        </div>
+                        <div class="article-content">
+                            <p class="article-excerpt">Cultivating the ability to focus deeply on cognitively demanding tasks in a world designed to distract us.</p>
+                            <div class="article-meta">
+                                <a href="#" class="read-more">Read More →</a>
+                                <div class="article-tags">
+                                    <span class="tag">Productivity</span>
+                                    <span class="tag">Focus</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Simple smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Update active navigation item based on scroll position
+        window.addEventListener('scroll', function() {
+            let current = '';
+            const sections = document.querySelectorAll('section[id]');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-menu a').forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href') === '#' + current) {
+                    a.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
