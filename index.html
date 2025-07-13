@@ -12,405 +12,610 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
-            color: #ffffff;
-            min-height: 100vh;
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+            background-color: #0a192f;
+            color: #8892b0;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 150px;
             display: flex;
             min-height: 100vh;
         }
 
-        /* Minimal Sidebar */
-        .sidebar {
-            width: 80px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 2rem 0;
+        /* Navigation */
+        .nav {
             position: fixed;
-            height: 100vh;
+            top: 0;
+            right: 0;
+            padding: 2rem;
+            z-index: 1000;
         }
 
-        .logo {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
+        .nav-list {
+            list-style: none;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            font-size: 1.2rem;
-            margin-bottom: 3rem;
+            gap: 2rem;
         }
 
-        .nav-dots {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+        .nav-list a {
+            color: #64ffda;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
         }
 
-        .nav-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.4);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .nav-dot.active {
-            background: #ffffff;
-            transform: scale(1.2);
-        }
-
-        .nav-dot:hover {
-            background: rgba(255, 255, 255, 0.8);
+        .nav-list a:hover {
+            color: #ffffff;
         }
 
         /* Main Content */
-        .main-content {
+        .main {
             flex: 1;
-            margin-left: 80px;
-            padding: 4rem 6rem;
-            max-width: 1000px;
+            padding: 100px 0;
         }
 
-        /* Typography */
-        h1 {
-            font-size: 3rem;
-            font-weight: 300;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.02em;
+        .intro {
+            margin-bottom: 100px;
         }
 
-        h2 {
-            font-size: 2rem;
-            font-weight: 300;
-            margin-bottom: 2rem;
-            opacity: 0.9;
+        .intro h1 {
+            font-size: 1rem;
+            color: #64ffda;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .intro h2 {
+            font-size: clamp(40px, 8vw, 80px);
+            color: #ccd6f6;
+            line-height: 1.1;
+            margin-bottom: 10px;
+        }
+
+        .intro h3 {
+            font-size: clamp(40px, 8vw, 80px);
+            color: #8892b0;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .intro p {
+            max-width: 500px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 50px;
         }
 
         /* About Section */
         .about-section {
-            margin-bottom: 6rem;
+            margin-bottom: 100px;
         }
 
-        .subtitle {
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            color: #ccd6f6;
+            font-weight: 600;
+        }
+
+        .section-title::before {
+            content: "01.";
+            color: #64ffda;
             font-size: 1.2rem;
-            opacity: 0.7;
-            margin-bottom: 3rem;
-            font-weight: 300;
+            margin-right: 15px;
+        }
+
+        .section-title::after {
+            content: "";
+            height: 1px;
+            background: #233554;
+            flex: 1;
+            margin-left: 20px;
         }
 
         .about-content {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            padding: 2.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .about-content p {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-            opacity: 0.9;
-            line-height: 1.7;
-        }
-
-        .experience-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
+            grid-template-columns: 3fr 2fr;
+            gap: 50px;
+            align-items: start;
         }
 
-        .experience-item {
-            text-align: center;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .about-text p {
+            margin-bottom: 20px;
+            line-height: 1.6;
         }
 
-        .experience-item h3 {
-            font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
+        .about-text strong {
+            color: #64ffda;
         }
 
-        .experience-item p {
-            font-size: 0.9rem;
-            opacity: 0.7;
-            margin: 0;
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 20px;
         }
 
-        /* Articles Section */
-        .articles-section {
-            margin-bottom: 4rem;
-        }
-
-        .manifesto-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            padding: 3rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            margin-bottom: 3rem;
-            text-align: center;
+        .skills-list li {
+            list-style: none;
             position: relative;
-            overflow: hidden;
+            padding-left: 20px;
+            color: #8892b0;
+            font-size: 0.9rem;
         }
 
-        .manifesto-card::before {
-            content: '';
+        .skills-list li::before {
+            content: "▹";
+            color: #64ffda;
             position: absolute;
+            left: 0;
+        }
+
+        /* Blog Section */
+        .blog-section {
+            margin-bottom: 100px;
+        }
+
+        .blog-section .section-title::before {
+            content: "02.";
+        }
+
+        .blog-list {
+            list-style: none;
+        }
+
+        .blog-item {
+            padding: 25px 0;
+            border-bottom: 1px solid #233554;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .blog-item:hover {
+            background: rgba(100, 255, 218, 0.05);
+            margin: 0 -25px;
+            padding: 25px;
+            border-radius: 4px;
+        }
+
+        .blog-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .blog-title {
+            color: #ccd6f6;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .blog-date {
+            color: #64ffda;
+            font-size: 0.9rem;
+        }
+
+        .blog-excerpt {
+            color: #8892b0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .blog-tags {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .blog-tag {
+            background: rgba(100, 255, 218, 0.1);
+            color: #64ffda;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+        }
+
+        /* Blog Modal */
+        .blog-modal {
+            position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #ffffff, rgba(255, 255, 255, 0.5));
-        }
-
-        .manifesto-card h3 {
-            font-size: 1.8rem;
-            font-weight: 400;
-            margin-bottom: 1rem;
-        }
-
-        .manifesto-card p {
-            font-size: 1.1rem;
-            opacity: 0.8;
-            margin-bottom: 2rem;
-            line-height: 1.7;
-        }
-
-        .read-button {
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 0.75rem 2rem;
-            border-radius: 25px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
-        }
-
-        .read-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .other-articles {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .article-card {
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 25, 47, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
             transition: all 0.3s ease;
         }
 
-        .article-card:hover {
-            background: rgba(255, 255, 255, 0.12);
-            transform: translateY(-5px);
-        }
-
-        .article-card h4 {
-            font-size: 1.2rem;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-        }
-
-        .article-date {
-            font-size: 0.9rem;
-            opacity: 0.6;
-            margin-bottom: 1rem;
-        }
-
-        .article-excerpt {
-            font-size: 0.95rem;
-            opacity: 0.8;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .article-link {
-            color: rgba(255, 255, 255, 0.9);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: opacity 0.3s ease;
-        }
-
-        .article-link:hover {
+        .blog-modal.active {
             opacity: 1;
+            visibility: visible;
         }
 
-        /* Responsive Design */
+        .blog-content {
+            background: #112240;
+            border-radius: 8px;
+            padding: 40px;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(30px);
+            transition: transform 0.3s ease;
+            border: 1px solid #233554;
+        }
+
+        .blog-modal.active .blog-content {
+            transform: translateY(0);
+        }
+
+        .blog-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #64ffda;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+
+        .blog-close:hover {
+            background: rgba(100, 255, 218, 0.1);
+        }
+
+        .blog-content h1 {
+            color: #ccd6f6;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .blog-content .blog-meta {
+            color: #64ffda;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+        }
+
+        .blog-content p {
+            margin-bottom: 20px;
+            line-height: 1.7;
+            color: #8892b0;
+        }
+
+        .blog-content h2 {
+            color: #ccd6f6;
+            font-size: 1.5rem;
+            margin: 30px 0 15px 0;
+        }
+
+        .blog-content h3 {
+            color: #ccd6f6;
+            font-size: 1.2rem;
+            margin: 25px 0 10px 0;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .sidebar {
-                width: 100%;
-                height: 60px;
-                flex-direction: row;
-                justify-content: center;
-                position: static;
-                padding: 1rem 0;
+            .container {
+                padding: 0 25px;
             }
 
-            .logo {
-                margin-bottom: 0;
-                margin-right: 2rem;
-            }
-
-            .nav-dots {
-                flex-direction: row;
-            }
-
-            .main-content {
-                margin-left: 0;
-                padding: 2rem 1.5rem;
-            }
-
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            h2 {
-                font-size: 1.8rem;
-            }
-
-            .other-articles {
+            .about-content {
                 grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .intro h2, .intro h3 {
+                font-size: 50px;
+            }
+
+            .nav {
+                padding: 1rem;
+            }
+
+            .nav-list {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .blog-content {
+                padding: 25px;
+                margin: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Minimal Sidebar -->
-        <nav class="sidebar">
-            <div class="logo">AS</div>
-            <div class="nav-dots">
-                <div class="nav-dot active" data-section="about"></div>
-                <div class="nav-dot" data-section="articles"></div>
-                <div class="nav-dot" data-section="contact"></div>
-            </div>
-        </nav>
+    <nav class="nav">
+        <ul class="nav-list">
+            <li><a href="#about">About</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- About Section -->
+    <div class="container">
+        <main class="main">
+            <section class="intro">
+                <h1>Hi, my name is</h1>
+                <h2>Aaron Shao.</h2>
+                <h3>I write about the future.</h3>
+                <p>
+                    I'm a thinker and writer focused on the intersection of technology, society, and human potential. 
+                    My work explores how we can collectively build a better future through thoughtful discourse and meaningful change.
+                </p>
+            </section>
+
             <section id="about" class="about-section">
-                <h1>Aaron Shao</h1>
-                <div class="subtitle">Thinker, Writer, Advocate</div>
-                
+                <h2 class="section-title">About</h2>
                 <div class="about-content">
-                    <p>I explore the intersection of technology, society, and human potential through writing and critical thinking. My work focuses on meaningful discourse and the power of ideas to shape our collective future.</p>
-                    
-                    <div class="experience-grid">
-                        <div class="experience-item">
-                            <h3>Philosophy</h3>
-                            <p>Critical thinking and ethical frameworks</p>
-                        </div>
-                        <div class="experience-item">
-                            <h3>Technology</h3>
-                            <p>Impact on society and human behavior</p>
-                        </div>
-                        <div class="experience-item">
-                            <h3>Writing</h3>
-                            <p>Bridging complex ideas with clarity</p>
-                        </div>
+                    <div class="about-text">
+                        <p>
+                            I believe in the power of <strong>ideas to shape our future</strong> and the importance of thoughtful discourse in navigating complex challenges. My work focuses on exploring fundamental questions about existence, ethics, and the human condition through rigorous analysis and creative expression.
+                        </p>
+                        <p>
+                            My writings examine how technological advancement intersects with social structures, economic systems, and individual liberty. I'm particularly interested in <strong>digital minimalism</strong>, the future of human connection, and the art of deep work in our hyperconnected age.
+                        </p>
+                        <p>
+                            Here are some areas I focus on:
+                        </p>
+                        <ul class="skills-list">
+                            <li>Philosophy & Ethics</li>
+                            <li>Technology & Society</li>
+                            <li>Digital Minimalism</li>
+                            <li>Human Connection</li>
+                            <li>Creative Destruction</li>
+                            <li>Deep Work</li>
+                        </ul>
                     </div>
                 </div>
             </section>
 
-            <!-- Articles Section -->
-            <section id="articles" class="articles-section">
-                <h2>Writings</h2>
-                
-                <!-- Featured Manifesto -->
-                <div class="manifesto-card">
-                    <h3>My Manifesto</h3>
-                    <p>A comprehensive exploration of my core beliefs and vision for building a better future through collective action and meaningful change.</p>
-                    <a href="#" class="read-button">Read Manifesto</a>
-                </div>
-
-                <!-- Other Articles -->
-                <div class="other-articles">
-                    <article class="article-card">
-                        <h4>The Future of Human Connection</h4>
-                        <div class="article-date">November 2024</div>
-                        <p class="article-excerpt">Exploring authentic relationships in our digital age and finding balance between convenience and meaning.</p>
-                        <a href="#" class="article-link">Read more →</a>
-                    </article>
-
-                    <article class="article-card">
-                        <h4>On Creative Destruction</h4>
-                        <div class="article-date">October 2024</div>
-                        <p class="article-excerpt">Reflections on change, progress, and the courage to reimagine our systems for a better tomorrow.</p>
-                        <a href="#" class="article-link">Read more →</a>
-                    </article>
-
-                    <article class="article-card">
-                        <h4>Digital Minimalism</h4>
-                        <div class="article-date">September 2024</div>
-                        <p class="article-excerpt">Practical strategies for reducing digital clutter and focusing on what truly matters.</p>
-                        <a href="#" class="article-link">Read more →</a>
-                    </article>
-                </div>
+            <section id="blog" class="blog-section">
+                <h2 class="section-title">Blog</h2>
+                <ul class="blog-list">
+                    <li class="blog-item" onclick="openBlog('manifesto')">
+                        <div class="blog-item-header">
+                            <h3 class="blog-title">My Manifesto: A Vision for Tomorrow</h3>
+                            <span class="blog-date">Dec 2024</span>
+                        </div>
+                        <p class="blog-excerpt">A comprehensive exploration of my core beliefs, values, and vision for how we can collectively build a better future.</p>
+                        <div class="blog-tags">
+                            <span class="blog-tag">Philosophy</span>
+                            <span class="blog-tag">Society</span>
+                            <span class="blog-tag">Featured</span>
+                        </div>
+                    </li>
+                    
+                    <li class="blog-item" onclick="openBlog('connection')">
+                        <div class="blog-item-header">
+                            <h3 class="blog-title">The Future of Human Connection</h3>
+                            <span class="blog-date">Nov 2024</span>
+                        </div>
+                        <p class="blog-excerpt">In an increasingly digital world, how do we maintain authentic human connections? Exploring the balance between technological convenience and meaningful relationships.</p>
+                        <div class="blog-tags">
+                            <span class="blog-tag">Technology</span>
+                            <span class="blog-tag">Society</span>
+                        </div>
+                    </li>
+                    
+                    <li class="blog-item" onclick="openBlog('destruction')">
+                        <div class="blog-item-header">
+                            <h3 class="blog-title">On Creative Destruction</h3>
+                            <span class="blog-date">Oct 2024</span>
+                        </div>
+                        <p class="blog-excerpt">Sometimes we must tear down old structures to build something better. Reflections on change, progress, and the courage to reimagine our systems.</p>
+                        <div class="blog-tags">
+                            <span class="blog-tag">Philosophy</span>
+                            <span class="blog-tag">Change</span>
+                        </div>
+                    </li>
+                    
+                    <li class="blog-item" onclick="openBlog('minimalism')">
+                        <div class="blog-item-header">
+                            <h3 class="blog-title">Digital Minimalism in Practice</h3>
+                            <span class="blog-date">Sep 2024</span>
+                        </div>
+                        <p class="blog-excerpt">Practical strategies for reducing digital clutter and focusing on what truly matters in our hyperconnected age.</p>
+                        <div class="blog-tags">
+                            <span class="blog-tag">Lifestyle</span>
+                            <span class="blog-tag">Technology</span>
+                        </div>
+                    </li>
+                    
+                    <li class="blog-item" onclick="openBlog('deepwork')">
+                        <div class="blog-item-header">
+                            <h3 class="blog-title">The Art of Deep Work</h3>
+                            <span class="blog-date">Aug 2024</span>
+                        </div>
+                        <p class="blog-excerpt">Cultivating the ability to focus deeply on cognitively demanding tasks in a world designed to distract us.</p>
+                        <div class="blog-tags">
+                            <span class="blog-tag">Productivity</span>
+                            <span class="blog-tag">Focus</span>
+                        </div>
+                    </li>
+                </ul>
             </section>
         </main>
     </div>
 
-    <script>
-        // Simple navigation functionality
-        const navDots = document.querySelectorAll('.nav-dot');
-        const sections = document.querySelectorAll('section');
+    <!-- Blog Modal -->
+    <div class="blog-modal" id="blogModal">
+        <div class="blog-content">
+            <button class="blog-close" onclick="closeBlog()">×</button>
+            <div id="blogContent">
+                <!-- Blog content will be loaded here -->
+            </div>
+        </div>
+    </div>
 
-        navDots.forEach(dot => {
-            dot.addEventListener('click', () => {
-                const targetSection = dot.dataset.section;
-                const section = document.getElementById(targetSection);
-                
-                if (section) {
-                    section.scrollIntoView({ behavior: 'smooth' });
-                }
-                
-                navDots.forEach(d => d.classList.remove('active'));
-                dot.classList.add('active');
-            });
+    <script>
+        const blogPosts = {
+            manifesto: {
+                title: "My Manifesto: A Vision for Tomorrow",
+                date: "December 2024",
+                content: `
+                    <h1>My Manifesto: A Vision for Tomorrow</h1>
+                    <div class="blog-meta">December 2024</div>
+                    
+                    <p>In a world of rapid change and endless noise, I believe we need clear principles to guide our path forward. This manifesto outlines my core beliefs about how we can build a better future together.</p>
+                    
+                    <h2>On Human Potential</h2>
+                    <p>Every person possesses unique capabilities that, when properly cultivated, can contribute to the collective good. Our systems should nurture this potential rather than constrain it.</p>
+                    
+                    <h2>On Technology</h2>
+                    <p>Technology is a tool—neither inherently good nor evil. Its impact depends entirely on how we choose to design, implement, and govern it. We must be intentional about the future we're building.</p>
+                    
+                    <h2>On Society</h2>
+                    <p>A healthy society balances individual freedom with collective responsibility. We must protect the rights of each person while working together toward common goals.</p>
+                    
+                    <h2>On Change</h2>
+                    <p>Change is inevitable, but progress is not. We must actively work to ensure that change leads to genuine improvement in human flourishing and societal well-being.</p>
+                    
+                    <p>These principles guide my work and my writing. They are not dogma, but living ideas that evolve with experience and new understanding.</p>
+                `
+            },
+            connection: {
+                title: "The Future of Human Connection",
+                date: "November 2024",
+                content: `
+                    <h1>The Future of Human Connection</h1>
+                    <div class="blog-meta">November 2024</div>
+                    
+                    <p>As we become increasingly connected through digital networks, we paradoxically find ourselves more isolated than ever. This contradiction lies at the heart of our modern human experience.</p>
+                    
+                    <h2>The Digital Paradox</h2>
+                    <p>We have more ways to communicate than ever before, yet rates of loneliness and social isolation continue to rise. The tools that promised to bring us together have, in many ways, driven us apart.</p>
+                    
+                    <h2>Quality Over Quantity</h2>
+                    <p>The solution isn't necessarily to abandon technology, but to be more intentional about how we use it. Meaningful connections require depth, vulnerability, and sustained attention—qualities that are difficult to cultivate in our current digital environment.</p>
+                    
+                    <h2>Designing for Connection</h2>
+                    <p>We need to redesign our digital spaces to foster genuine human connection. This means creating environments that encourage deep conversation, mutual understanding, and authentic relationship-building.</p>
+                    
+                    <p>The future of human connection will be determined by the choices we make today about how we relate to each other and to our technology.</p>
+                `
+            },
+            destruction: {
+                title: "On Creative Destruction",
+                date: "October 2024",
+                content: `
+                    <h1>On Creative Destruction</h1>
+                    <div class="blog-meta">October 2024</div>
+                    
+                    <p>Joseph Schumpeter's concept of creative destruction—the idea that innovation inherently destroys old ways of doing things—is more relevant today than ever. But destruction without purpose is merely chaos.</p>
+                    
+                    <h2>The Courage to Rebuild</h2>
+                    <p>Sometimes, the most loving thing we can do is to tear down systems that no longer serve us. This requires courage, vision, and a commitment to building something better in their place.</p>
+                    
+                    <h2>Constructive Deconstruction</h2>
+                    <p>Not all destruction is creative. To qualify as creative destruction, the process must be guided by clear values and a vision for improvement. We must know what we're building before we tear down what exists.</p>
+                    
+                    <h2>The Human Cost</h2>
+                    <p>Change always comes with costs. We must be honest about these costs and work to minimize harm while maximizing benefit. This requires empathy, planning, and a commitment to justice.</p>
+                    
+                    <p>The future belongs to those who can navigate the tension between preservation and progress, holding onto what serves us while having the courage to change what doesn't.</p>
+                `
+            },
+            minimalism: {
+                title: "Digital Minimalism in Practice",
+                date: "September 2024",
+                content: `
+                    <h1>Digital Minimalism in Practice</h1>
+                    <div class="blog-meta">September 2024</div>
+                    
+                    <p>Digital minimalism isn't about rejecting technology—it's about being intentional with the tools we choose to let into our lives. It's about optimizing for value rather than convenience.</p>
+                    
+                    <h2>The Attention Economy</h2>
+                    <p>Our attention has become a commodity, bought and sold by companies that profit from our distraction. Reclaiming our attention is an act of resistance and self-determination.</p>
+                    
+                    <h2>Practical Strategies</h2>
+                    <p>Start with a digital declutter: remove apps that don't add significant value to your life. Be ruthless. Then, slowly reintroduce only the tools that align with your values and goals.</p>
+                    
+                    <h3>Key Principles</h3>
+                    <p>1. Every tool should serve a specific purpose<br>
+                    2. Convenience alone is not sufficient justification<br>
+                    3. The benefits must clearly outweigh the costs<br>
+                    4. You should be able to articulate why you use each tool</p>
+                    
+                    <p>Digital minimalism is ultimately about freedom—the freedom to choose how we spend our time and attention.</p>
+                `
+            },
+            deepwork: {
+                title: "The Art of Deep Work",
+                date: "August 2024",
+                content: `
+                    <h1>The Art of Deep Work</h1>
+                    <div class="blog-meta">August 2024</div>
+                    
+                    <p>In a world of constant connectivity and endless distractions, the ability to focus deeply on cognitively demanding tasks has become both increasingly rare and increasingly valuable.</p>
+                    
+                    <h2>What Is Deep Work?</h2>
+                    <p>Deep work is the ability to focus without distraction on cognitively demanding tasks. It's the kind of work that creates value, improves skills, and is difficult to replicate.</p>
+                    
+                    <h2>The Shallow Work Trap</h2>
+                    <p>Most of us spend our days in shallow work—tasks that are logistical in nature, performed while distracted, and don't create much value. This work feels productive but rarely leads to meaningful outcomes.</p>
+                    
+                    <h2>Cultivating Deep Work</h2>
+                    <p>Developing the ability to work deeply requires intentional practice. Start with short periods of focused work and gradually increase the duration. Create rituals and environments that support concentration.</p>
+                    
+                    <h3>Strategies for Deep Work</h3>
+                    <p>1. Schedule deep work sessions like important meetings<br>
+                    2. Eliminate or minimize potential distractions<br>
+                    3. Work in blocks of 90-120 minutes<br>
+                    4. Take regular breaks to restore attention</p>
+                    
+                    <p>The future belongs to those who can think deeply and create value in an increasingly distracted world.</p>
+                `
+            }
+        };
+
+        function openBlog(postId) {
+            const modal = document.getElementById('blogModal');
+            const content = document.getElementById('blogContent');
+            
+            if (blogPosts[postId]) {
+                content.innerHTML = blogPosts[postId].content;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeBlog() {
+            const modal = document.getElementById('blogModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('blogModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeBlog();
+            }
         });
 
-        // Update active dot on scroll
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 300) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navDots.forEach(dot => {
-                dot.classList.remove('active');
-                if (dot.dataset.section === current) {
-                    dot.classList.add('active');
-                }
-            });
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeBlog();
+            }
         });
     </script>
 </body>
